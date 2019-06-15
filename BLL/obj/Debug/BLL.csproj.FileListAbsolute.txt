@@ -1,0 +1,106 @@
+D:\Work\Project\Now\GeneralProgram\BLL\bin\Debug\BLL.dll.config
+D:\Work\Project\Now\GeneralProgram\BLL\bin\Debug\BLL.dll
+D:\Work\Project\Now\GeneralProgram\BLL\bin\Debug\BLL.pdb
+D:\Work\Project\Now\GeneralProgram\BLL\bin\Debug\DAL.dll
+D:\Work\Project\Now\GeneralProgram\BLL\bin\Debug\EntityFramework.dll
+D:\Work\Project\Now\GeneralProgram\BLL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Work\Project\Now\GeneralProgram\BLL\bin\Debug\DAL.pdb
+D:\Work\Project\Now\GeneralProgram\BLL\bin\Debug\DAL.dll.config
+D:\Work\Project\Now\GeneralProgram\BLL\bin\Debug\EntityFramework.xml
+D:\Work\Project\Now\GeneralProgram\BLL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Work\Project\Now\GeneralProgram\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+D:\Work\Project\Now\GeneralProgram\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+D:\Work\Project\Now\GeneralProgram\BLL\obj\Debug\BLL.csproj.CopyComplete
+D:\Work\Project\Now\GeneralProgram\BLL\obj\Debug\BLL.dll
+D:\Work\Project\Now\GeneralProgram\BLL\obj\Debug\BLL.pdb
+D:\Work\Project\Now\Cafe\Cafe\BLL\bin\Debug\BLL.dll.config
+D:\Work\Project\Now\Cafe\Cafe\BLL\bin\Debug\BLL.dll
+D:\Work\Project\Now\Cafe\Cafe\BLL\bin\Debug\BLL.pdb
+D:\Work\Project\Now\Cafe\Cafe\BLL\bin\Debug\DAL.dll
+D:\Work\Project\Now\Cafe\Cafe\BLL\bin\Debug\DTO.dll
+D:\Work\Project\Now\Cafe\Cafe\BLL\bin\Debug\EntityFramework.dll
+D:\Work\Project\Now\Cafe\Cafe\BLL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Work\Project\Now\Cafe\Cafe\BLL\bin\Debug\Utilities.dll
+D:\Work\Project\Now\Cafe\Cafe\BLL\bin\Debug\DAL.pdb
+D:\Work\Project\Now\Cafe\Cafe\BLL\bin\Debug\DAL.dll.config
+D:\Work\Project\Now\Cafe\Cafe\BLL\bin\Debug\DTO.pdb
+D:\Work\Project\Now\Cafe\Cafe\BLL\bin\Debug\EntityFramework.xml
+D:\Work\Project\Now\Cafe\Cafe\BLL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Work\Project\Now\Cafe\Cafe\BLL\bin\Debug\Utilities.pdb
+D:\Work\Project\Now\Cafe\Cafe\BLL\bin\Debug\Utilities.dll.config
+D:\Work\Project\Now\Cafe\Cafe\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+D:\Work\Project\Now\Cafe\Cafe\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+D:\Work\Project\Now\Cafe\Cafe\BLL\obj\Debug\BLL.csproj.CopyComplete
+D:\Work\Project\Now\Cafe\Cafe\BLL\obj\Debug\BLL.dll
+D:\Work\Project\Now\Cafe\Cafe\BLL\obj\Debug\BLL.pdb
+D:\Work\Project\Now\Joy-Cafe\BLL\bin\Debug\BLL.dll.config
+D:\Work\Project\Now\Joy-Cafe\BLL\bin\Debug\BLL.dll
+D:\Work\Project\Now\Joy-Cafe\BLL\bin\Debug\BLL.pdb
+D:\Work\Project\Now\Joy-Cafe\BLL\bin\Debug\DAL.dll
+D:\Work\Project\Now\Joy-Cafe\BLL\bin\Debug\DTO.dll
+D:\Work\Project\Now\Joy-Cafe\BLL\bin\Debug\EntityFramework.dll
+D:\Work\Project\Now\Joy-Cafe\BLL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Work\Project\Now\Joy-Cafe\BLL\bin\Debug\Utilities.dll
+D:\Work\Project\Now\Joy-Cafe\BLL\bin\Debug\DAL.pdb
+D:\Work\Project\Now\Joy-Cafe\BLL\bin\Debug\DAL.dll.config
+D:\Work\Project\Now\Joy-Cafe\BLL\bin\Debug\DTO.pdb
+D:\Work\Project\Now\Joy-Cafe\BLL\bin\Debug\EntityFramework.xml
+D:\Work\Project\Now\Joy-Cafe\BLL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Work\Project\Now\Joy-Cafe\BLL\bin\Debug\Utilities.pdb
+D:\Work\Project\Now\Joy-Cafe\BLL\bin\Debug\Utilities.dll.config
+D:\Work\Project\Now\Joy-Cafe\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+D:\Work\Project\Now\Joy-Cafe\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+D:\Work\Project\Now\Joy-Cafe\BLL\obj\Debug\BLL.csproj.CopyComplete
+D:\Work\Project\Now\Joy-Cafe\BLL\obj\Debug\BLL.dll
+D:\Work\Project\Now\Joy-Cafe\BLL\obj\Debug\BLL.pdb
+D:\Work\Project\Joy Cafe\Joy-Cafe\BLL\bin\Debug\BLL.dll.config
+D:\Work\Project\Joy Cafe\Joy-Cafe\BLL\bin\Debug\BLL.dll
+D:\Work\Project\Joy Cafe\Joy-Cafe\BLL\bin\Debug\BLL.pdb
+D:\Work\Project\Joy Cafe\Joy-Cafe\BLL\bin\Debug\DAL.dll
+D:\Work\Project\Joy Cafe\Joy-Cafe\BLL\bin\Debug\DTO.dll
+D:\Work\Project\Joy Cafe\Joy-Cafe\BLL\bin\Debug\EntityFramework.dll
+D:\Work\Project\Joy Cafe\Joy-Cafe\BLL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Work\Project\Joy Cafe\Joy-Cafe\BLL\bin\Debug\DAL.pdb
+D:\Work\Project\Joy Cafe\Joy-Cafe\BLL\bin\Debug\DAL.dll.config
+D:\Work\Project\Joy Cafe\Joy-Cafe\BLL\bin\Debug\DTO.pdb
+D:\Work\Project\Joy Cafe\Joy-Cafe\BLL\bin\Debug\EntityFramework.xml
+D:\Work\Project\Joy Cafe\Joy-Cafe\BLL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Work\Project\Joy Cafe\Joy-Cafe\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+D:\Work\Project\Joy Cafe\Joy-Cafe\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+D:\Work\Project\Joy Cafe\Joy-Cafe\BLL\obj\Debug\BLL.csproj.CopyComplete
+D:\Work\Project\Joy Cafe\Joy-Cafe\BLL\obj\Debug\BLL.dll
+D:\Work\Project\Joy Cafe\Joy-Cafe\BLL\obj\Debug\BLL.pdb
+D:\Work\Project\Freelance\Joy Cafe\Joy-Cafe\BLL\bin\Debug\BLL.dll.config
+D:\Work\Project\Freelance\Joy Cafe\Joy-Cafe\BLL\bin\Debug\BLL.dll
+D:\Work\Project\Freelance\Joy Cafe\Joy-Cafe\BLL\bin\Debug\BLL.pdb
+D:\Work\Project\Freelance\Joy Cafe\Joy-Cafe\BLL\bin\Debug\DAL.dll
+D:\Work\Project\Freelance\Joy Cafe\Joy-Cafe\BLL\bin\Debug\DTO.dll
+D:\Work\Project\Freelance\Joy Cafe\Joy-Cafe\BLL\bin\Debug\EntityFramework.dll
+D:\Work\Project\Freelance\Joy Cafe\Joy-Cafe\BLL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Work\Project\Freelance\Joy Cafe\Joy-Cafe\BLL\bin\Debug\DAL.pdb
+D:\Work\Project\Freelance\Joy Cafe\Joy-Cafe\BLL\bin\Debug\DTO.pdb
+D:\Work\Project\Freelance\Joy Cafe\Joy-Cafe\BLL\bin\Debug\EntityFramework.xml
+D:\Work\Project\Freelance\Joy Cafe\Joy-Cafe\BLL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Work\Project\Freelance\Joy Cafe\Joy-Cafe\BLL\obj\Debug\BLL.dll
+D:\Work\Project\Freelance\Joy Cafe\Joy-Cafe\BLL\obj\Debug\BLL.pdb
+D:\Work\Project\Freelance\Joy Cafe\Joy-Cafe\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\bin\Debug\BLL.dll.config
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\bin\Debug\BLL.dll
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\bin\Debug\BLL.pdb
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\bin\Debug\DAL.dll
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\bin\Debug\DTO.dll
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\bin\Debug\EntityFramework.dll
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\bin\Debug\DAL.pdb
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\bin\Debug\DAL.dll.config
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\bin\Debug\DTO.pdb
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\bin\Debug\EntityFramework.xml
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\obj\Debug\BLL.csproj.CopyComplete
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\obj\Debug\BLL.dll
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\obj\Debug\BLL.pdb
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\bin\Debug\EntityFramework.Extended.dll
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\bin\Debug\EntityFramework.Extended.xml
+D:\Work\Project\Freelance\Sheikh Restaurant\BLL\bin\Debug\EntityFramework.Extended.dll.config

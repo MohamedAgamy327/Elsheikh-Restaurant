@@ -1,0 +1,112 @@
+﻿<dialogs:CustomDialog x:Class="Restaurant.Views.CashierViews.FinishShiftViews.FinishShiftDialog"
+                      xmlns:Helpers="clr-namespace:Restaurant.Helpers"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:dialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                         xml:lang="ar-EG"
+                      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      dialogs:DialogParticipation.Register="{Binding}"
+                      mc:Ignorable="d"
+                      Title="نهاية الشفت"
+                      FlowDirection="RightToLeft"
+                      >
+    <StackPanel Name="pnl" Margin="10" >
+        <StackPanel.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="..\..\..\Skins\MainSkin.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </StackPanel.Resources>
+
+        <StackPanel Orientation="Horizontal">
+
+            <TextBlock Style="{StaticResource TextBlockStyle}" Margin="5">الكاشير  :</TextBlock>
+
+            <TextBlock Text="{Binding Shift.User.Name}" Style="{StaticResource TextBlockStyle}" Margin="5"/>
+
+        </StackPanel>
+
+
+        <StackPanel Orientation="Horizontal">
+
+            <TextBlock Style="{StaticResource TextBlockStyle}" Margin="5">وقت بداية الشفت :</TextBlock>
+
+            <TextBlock Text="{Binding Shift.StartDate, StringFormat={}\{0:hh:mm tt yyyy/MM/dd  \}}" Style="{StaticResource TextBlockStyle}" Margin="5"/>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+
+            <TextBlock Style="{StaticResource TextBlockStyle}" Margin="5">بداية الشفت :</TextBlock>
+
+            <TextBlock Text="{Binding Shift.SafeStart,StringFormat={}{0:0;(0)}}" Style="{StaticResource TextBlockStyle}" Margin="5"/>
+
+            <TextBlock Style="{StaticResource TextBlockStyle}" Margin="5">جنيهاً</TextBlock>
+
+        </StackPanel>
+
+
+
+        <StackPanel Orientation="Horizontal">
+
+            <TextBlock Style="{StaticResource TextBlockStyle}" Margin="5">إجمالى الاصناف :</TextBlock>
+
+            <TextBlock Text="{Binding Shift.TotalItems,StringFormat={}{0:0;(0)}}" Style="{StaticResource TextBlockStyle}" Margin="5"/>
+
+            <TextBlock Style="{StaticResource TextBlockStyle}" Margin="5">جنيهاً</TextBlock>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+
+            <TextBlock Style="{StaticResource TextBlockStyle}" Margin="5">الدخل :</TextBlock>
+
+            <TextBlock Text="{Binding Shift.Income,StringFormat={}{0:0;(0)}}" Style="{StaticResource TextBlockStyle}" Margin="5"/>
+            <TextBlock  Style="{StaticResource TextBlockStyle}" Margin="5">جنيهاً</TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+
+            <TextBlock Style="{StaticResource TextBlockStyle}" Margin="5">المصاريف  :</TextBlock>
+
+            <TextBlock Text="{Binding Shift.Spending,StringFormat={}{0:0;(0)}}" Style="{StaticResource TextBlockStyle}" Margin="5"/>
+            <TextBlock Style="{StaticResource TextBlockStyle}" Margin="5">جنيهاً</TextBlock>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal">
+
+            <TextBlock Style="{StaticResource TextBlockStyle}" Margin="5">الإجمالى  :</TextBlock>
+
+            <TextBlock Text="{Binding Shift.Total,StringFormat={}{0:0;(0)}}" Style="{StaticResource TextBlockStyle}" Margin="5"/>
+            <TextBlock Style="{StaticResource TextBlockStyle}" Margin="5">جنيهاً</TextBlock>
+        </StackPanel>
+
+        <TextBlock Style="{StaticResource TextBlockStyle}" Margin="5">الدرج</TextBlock>
+
+        <Controls:NumericUpDown Helpers:FocusExtension.IsFocused="{Binding IsFocused}"  Name="First" Value="{Binding Shift.SafeEnd, ValidatesOnNotifyDataErrors=True,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource NumericUpDownStyle}" Minimum="0">
+        </Controls:NumericUpDown>
+
+
+        
+        <Separator Margin="0 10 0 0" />
+        <StackPanel Orientation="Horizontal" Margin="0 10 0 0" >
+            <Button IsDefault="True" Name="btn" Command="{Binding FinishShift}" Style="{StaticResource SquareButtonStyle}" Width="120" Margin="5,0"  >
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock  Text="إنهاء الشفت"  Style="{StaticResource TextBlockStyle}" Margin="10,0"></TextBlock>
+                    <iconPacks:PackIconModern Kind="TimerStop" />
+                </StackPanel>
+            </Button>
+            <Button IsCancel="True" Command="{Binding CloseDialog}" CommandParameter="FinishShift" Style="{StaticResource SquareButtonStyle}" Width="120" Margin="5,0" >
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock  Text="إغلاق"  Style="{StaticResource TextBlockStyle}" Margin="10,0"></TextBlock>
+                    <iconPacks:PackIconModern Kind="Cancel" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+
+</dialogs:CustomDialog>

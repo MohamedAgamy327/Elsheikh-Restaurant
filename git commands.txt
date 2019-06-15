@@ -1,0 +1,20 @@
+git init
+
+git config --global user.name "your name"
+
+git config --global user.email "email@example.com"
+
+git remote add origin https://github.com/cyandigitalhouse20/VONNN-Angular.git
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+git add .
+
+git commit -m "your commit message"
+
+git log
+
+git push origin master
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+
+git clone https://github.com/cyandigitalhouse20/VONNN-Angular.git
+
+git pull origin master 

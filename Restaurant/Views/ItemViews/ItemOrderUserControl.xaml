@@ -1,0 +1,167 @@
+﻿<UserControl x:Class="Restaurant.Views.ItemViews.ItemOrderUserControl"
+             xmlns:Helpers="clr-namespace:Restaurant.Helpers"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:Custom="http://www.galasoft.ch/mvvmlight"
+             mc:Ignorable="d"
+             FlowDirection="RightToLeft"
+             d:DesignHeight="600"
+             d:DesignWidth="800">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding Loaded}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\..\Skins\MainSkin.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".7*" />
+            <RowDefinition Height="9*" />
+            <RowDefinition Height=".5*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Margin="10,0" Style="{StaticResource TextBlockWindowStyle}"
+                        >النوع</TextBlock>
+            <ComboBox Margin="10,0" Width="200" Helpers:FocusExtension.IsFocused="{Binding IsFocused}"
+                      Name="First"
+                      ItemsSource="{Binding Categories}"
+                      SelectedValuePath="ID"
+                      SelectedItem="{Binding SelectedCategory}"
+                      DisplayMemberPath="Name"
+                      IsEditable="True"
+                      Style="{StaticResource ComboBoxStyle}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <Custom:EventToCommand Command="{Binding Search}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+        </StackPanel>
+
+
+        <DataGrid ItemsSource="{Binding Items}"
+                  SelectedItem="{Binding SelectedItem}"
+                  Margin="0 10 0 0"
+                  Grid.Row="1"
+                  HeadersVisibility="All"
+                  SelectionUnit="FullRow"
+                  IsManipulationEnabled="False"
+                  CanUserDeleteRows="False"
+                  CanUserAddRows="False"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+
+                <DataGridTextColumn IsReadOnly="True"
+                                    Header="الصنف"
+                                    Width="2*"
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle2}"
+                                    Binding="{Binding Item.Name}" />
+                <DataGridTextColumn IsReadOnly="True"
+                                    Header="النوع"
+                                    Width="2*"
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle2}"
+                                    Binding="{Binding Category.Name}" />
+                <DataGridTextColumn IsReadOnly="True"
+                                    Header="السعر"
+                                    Width="1*"
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle2}"
+                                    Binding="{Binding Item.Price}" />
+                <DataGridTextColumn IsReadOnly="True"
+                                    Header="الترتيب"
+                                    Width="1*"
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle2}"
+                                    Binding="{Binding Item.Order}" />
+
+            
+                <DataGridTemplateColumn  Header="اعلى"
+                                         Width="0.5*"
+                                         HeaderStyle="{StaticResource ColumnHeaderStyle2}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button  Command="{Binding DataContext.MoveUp, 
+                        RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                     BorderThickness="0">
+                                <iconPacks:PackIconFontAwesome Kind="AngleUp" />
+                                <Button.Style>
+                                    <Style TargetType="Button"
+                                           BasedOn="{StaticResource MetroCircleButtonStyle}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Item.Order}"
+                                                         Value="1">
+                                                <Setter Property="IsEnabled"
+                                                        Value="False"></Setter>
+                                            </DataTrigger>
+
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn  Header="اسفل"
+                                         Width="0.5*"
+                                         HeaderStyle="{StaticResource ColumnHeaderStyle2}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button  Command="{Binding DataContext.MoveDown, 
+                        RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                     BorderThickness="0">
+                                <iconPacks:PackIconFontAwesome Kind="AngleDown" />
+                                <Button.Style>
+                                    <Style TargetType="Button"
+                                           BasedOn="{StaticResource MetroCircleButtonStyle}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsLast}"
+                                                         Value="True">
+                                                <Setter Property="IsEnabled"
+                                                        Value="False"></Setter>
+                                            </DataTrigger>
+
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                
+            </DataGrid.Columns>
+
+            <DataGrid.Style>
+                <Style BasedOn="{StaticResource MetroDataGrid}"
+                       TargetType="{x:Type DataGrid}">
+                    <Setter Property="AlternatingRowBackground"
+                            Value="{DynamicResource GrayBrush10}" />
+                </Style>
+            </DataGrid.Style>
+
+        </DataGrid>
+
+        <StatusBar Grid.Row="2"
+                   VerticalAlignment="Bottom">
+            <StatusBarItem Content="عدد الأصناف"
+                           Style="{StaticResource StatusBarItemStyle}" />
+            <Separator Style="{StaticResource MetroStatusBarSeparator}"></Separator>
+            <StatusBarItem  Content="{Binding Paging.TotalRecords}"
+                            Style="{StaticResource StatusBarItemStyle}" />
+        </StatusBar>
+    </Grid>
+
+</UserControl>
