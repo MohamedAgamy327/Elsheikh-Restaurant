@@ -9,6 +9,7 @@ using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Restaurant.Reports;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
@@ -20,7 +21,7 @@ namespace Restaurant.ViewModels.BillViewModels
     {
         public static int BillID { get; set; }
 
-        MetroWindow currentWindow;
+        readonly MetroWindow currentWindow;
 
         public BillShowViewModel()
         {
@@ -120,7 +121,7 @@ namespace Restaurant.ViewModels.BillViewModels
             {
                 using (var unitOfWork = new UnitOfWork(new GeneralDBContext()))
                 {
-                    Items = new ObservableCollection<Item>(unitOfWork.Items.Find(f => f.IsAvailable == true && f.CategoryID == id).OrderBy(o => o.Order).ThenBy(o => o.BillsItems.Count).ThenBy(o => o.Name));
+                    Items = new ObservableCollection<Item>(unitOfWork.Items.Find(f => f.IsAvailable == true && f.CategoryID == id).OrderBy(o => o.Order));
                 }
             }
             catch (Exception ex)
@@ -228,8 +229,8 @@ namespace Restaurant.ViewModels.BillViewModels
                         CanDelete = false,
                         RegistrationDate = _selectedBill.RegistrationDate,
                         Type = true,
-                        UserID = UserData.ID,
-                        Statement = $"فاتورة {_selectedBill.ID}"
+                        Statement = $"فاتورة {_selectedBill.ID}",
+                        UserID=(int)_selectedBill.UserID
                     };
                     unitOfWork.Safes.Add(safe);
                     unitOfWork.BillsItems.Remove(s => s.BillID == BillID);
@@ -248,29 +249,37 @@ namespace Restaurant.ViewModels.BillViewModels
 
                     Mouse.OverrideCursor = Cursors.Wait;
                     int rnd = new Random().Next(1000, 9999);
-                    DS ds = new DS();
-                    ds.Bill.Rows.Clear();
-                    int i = 0;
 
-                    foreach (var item in BillItems)
+                    List<int?> categoriesId = _billItems.Select(s => s.Item.CategoryID).Distinct().ToList();
+
+                    foreach (var categoryId in categoriesId)
                     {
-                        ds.Bill.Rows.Add();
-                        ds.Bill[i]["BillID"] = $"#{rnd}#{_selectedBill.ID}#";
-                        ds.Bill[i]["Date"] = DateTime.Now.ToShortDateString();
-                        ds.Bill[i]["Time"] = DateTime.Now.ToString(" h:mm tt");
-                        ds.Bill[i]["Type"] = _selectedBill.Type;
-                        ds.Bill[i]["Details"] = _selectedBill.Details;
-                        ds.Bill[i]["ItemQty"] = item.Qty;
-                        ds.Bill[i]["ItemName"] = item.Item.Name;
-                        ds.Bill[i]["ItemPrice"] = string.Format("{0:0.00}", item.Item.Price); ;
-                        ds.Bill[i]["BillTotal"] = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(_selectedBill.Total), 0));
-                        i++;
+                        DS ds = new DS();
+                        ds.Bill.Rows.Clear();
+                        int i = 0;
+
+                        foreach (var item in BillItems.Where(w => w.Item.CategoryID == categoryId))
+                        {
+                            ds.Bill.Rows.Add();
+                            ds.Bill[i]["BillID"] = $"#{rnd}#{_selectedBill.ID}#";
+                            ds.Bill[i]["Date"] = DateTime.Now.ToShortDateString();
+                            ds.Bill[i]["Time"] = DateTime.Now.ToString(" h:mm tt");
+                            ds.Bill[i]["Type"] = _selectedBill.Type;
+                            ds.Bill[i]["Details"] = _selectedBill.Details;
+                            ds.Bill[i]["ItemQty"] = item.Qty;
+                            ds.Bill[i]["ItemName"] = item.Item.Name;
+                            ds.Bill[i]["ItemPrice"] = string.Format("{0:0.00}", item.Item.Price); ;
+                            ds.Bill[i]["BillTotal"] = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(BillItems.Where(w => w.Item.CategoryID == categoryId).Sum(s => s.Total)), 0));
+                            i++;
+                        }
+
+                        BillItemsReport billItemsReport = new BillItemsReport();
+                        billItemsReport.SetDataSource(ds.Tables["Bill"]);
+                        Mouse.OverrideCursor = null;
+                        billItemsReport.PrintToPrinter(1, false, 0, 15);
                     }
 
-                    BillItemsReport billItemsReport = new BillItemsReport();
-                    billItemsReport.SetDataSource(ds.Tables["Bill"]);
-                    Mouse.OverrideCursor = null;
-                    billItemsReport.PrintToPrinter(1, false, 0, 15);
+
 
                     currentWindow.Close();
                 }

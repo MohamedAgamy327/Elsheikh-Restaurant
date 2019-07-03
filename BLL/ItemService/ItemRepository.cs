@@ -33,7 +33,7 @@ namespace BLL.ItemService
 
         public List<ItemDisplayDataModel> Search(string key, int pageNumber, int pageSize)
         {
-            return GeneralDBContext.Items.Where(w => (w.Name).Contains(key)).OrderBy(t => t.CategoryID).Skip((pageNumber - 1) * pageSize).Take(pageSize).Select(s => new ItemDisplayDataModel
+            return GeneralDBContext.Items.Where(w => (w.Name).Contains(key)).OrderBy(t => t.CategoryID).ThenBy(t => t.Order).Skip((pageNumber - 1) * pageSize).Take(pageSize).Select(s => new ItemDisplayDataModel
             {
                 Item = s,
                 Category = s.Category,

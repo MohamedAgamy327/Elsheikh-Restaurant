@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using BLL.RepositoryService;
 using DAL;
@@ -20,32 +21,26 @@ namespace BLL.BillItemService
             get { return Context as GeneralDBContext; }
         }
 
-        public List<BillItemDisplayDataModel> GetBillItems(int billID)
+        public List<BillsCategoriesDataModel> GetBillsCategories(int categoryID,DateTime dt)
         {
-            throw new System.NotImplementedException();
+            return GeneralDBContext.BillsItems.Where(w => w.Item.CategoryID == categoryID && dt <= w.Bill.RegistrationDate).GroupBy(l => l.ItemID).
+                  Select(s => new BillsCategoriesDataModel
+                  {
+                      Item = s.FirstOrDefault().Item,
+                      Qty = s.Sum(j => j.Qty),
+                      Total = s.Sum(p => p.Total)
+                  }).ToList();
         }
 
-        public List<BillItemDisplayDataModel> GetShiftItems()
+        public List<BillsCategoriesDataModel> GetBillsCategories(int categoryID, DateTime dtFrom, DateTime dtTo)
         {
-            throw new System.NotImplementedException();
+            return GeneralDBContext.BillsItems.Where(w => w.Item.CategoryID == categoryID && w.Bill.RegistrationDate >= dtFrom && w.Bill.RegistrationDate <= dtTo).GroupBy(l => l.ItemID).
+                  Select(s => new BillsCategoriesDataModel
+                  {
+                      Item = s.FirstOrDefault().Item,
+                      Qty = s.Sum(j => j.Qty),
+                      Total = s.Sum(p => p.Total)
+                  }).ToList();
         }
-
-        //public List<ShiftItemDisplayDataModel> GetShiftItems()
-        //{
-        //    return GeneralDBContext.BillsItems.AsNoTracking().Where(w => w.Bill.Type == BillTypeText.Items && w.Bill.EndDate == null).OrderByDescending(o=>o.RegistrationDate).Select(s => new ShiftItemDisplayDataModel
-        //    {
-        //        //BillItem = s,
-        //        Item = s.Item
-        //    }).ToList();
-        //}
-
-        //public List<BillItemDisplayDataModel> GetBillItems(int billID)
-        //{
-        //    return GeneralDBContext.BillsItems.AsNoTracking().Where(w => w.BillID == billID).OrderByDescending(o => o.RegistrationDate).Select(s => new BillItemDisplayDataModel
-        //    {
-        //        BillItem = s,
-        //        Item = s.Item
-        //    }).ToList();
-        //}
     }
 }

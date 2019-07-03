@@ -30,6 +30,16 @@
         </ResourceDictionary>
     </Window.Resources>
 
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Command="{Binding SignOut}"
+                    ToolTip="تسجيل خروج">
+                <iconPacks:PackIconMaterial Kind="Logout" />
+            </Button>
+
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
     <Window.InputBindings>
         <KeyBinding Key="F1"
                     Command="{Binding Print}" />
@@ -38,9 +48,9 @@
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1.5*" />
             <ColumnDefinition Width=".04*" />
-            <ColumnDefinition Width="8.5*" />
+            <ColumnDefinition Width="8*" />
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0"
@@ -68,6 +78,16 @@
                 </StackPanel>
             </Button>
 
+            <Button Command="{Binding ShowBillsCategories}"
+                    Margin="5,10"
+                    Style="{StaticResource SquareButtonStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="المبيعات"
+                                Margin="5,0"
+                                Style="{StaticResource TextBlockStyle}"></TextBlock>
+                    <iconPacks:PackIconMaterial Kind="FileChart" />
+                </StackPanel>
+            </Button>
 
             <Button Command="{Binding ShowCalc}"
                     Margin="5,10"
@@ -98,16 +118,16 @@
             <Grid Grid.Row="0">
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="6*" />
-                    <ColumnDefinition Width="4*" />
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="5*" />
                 </Grid.ColumnDefinitions>
 
 
                 <Grid Grid.Column="0">
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="2*" />
-                        <RowDefinition Height="8*" />
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="7*" />
                     </Grid.RowDefinitions>
 
                     <ListBox  Grid.Row="0"
@@ -189,9 +209,18 @@
 
                         <DataGridTextColumn IsReadOnly="True"
                                             Header="الصنف"
-                                            Width="2*"
+                                            Width="1.8*"
                                             HeaderStyle="{StaticResource ColumnHeaderStyle3}"
-                                            Binding="{Binding Item.Name}" />
+                                            Binding="{Binding Item.Name}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style>
+                                    <Setter Property="TextBlock.TextWrapping"
+                                            Value="Wrap" />
+                                    <Setter Property="TextBlock.TextAlignment"
+                                            Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
                         <DataGridTextColumn IsReadOnly="True"
                                             Header="السعر"
                                             Width="1*"
@@ -199,11 +228,12 @@
                                             Binding="{Binding Item.Price}" />
 
                         <DataGridTemplateColumn Header="الكمية"
-                                                Width="1*"
+                                                Width="1.2*"
                                                 HeaderStyle="{StaticResource ColumnHeaderStyle3}">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Controls:NumericUpDown  Value="{Binding Qty,ValidatesOnNotifyDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
+                                    <Controls:NumericUpDown 
+                                        FontSize="12" Value="{Binding Qty,ValidatesOnNotifyDataErrors=True,UpdateSourceTrigger=PropertyChanged}"
                                                              HasDecimals="True"
                                                              HorizontalContentAlignment="Center"
                                                              Minimum="1">

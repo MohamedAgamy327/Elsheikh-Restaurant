@@ -208,19 +208,30 @@ namespace Restaurant.ViewModels.ItemViewModels
             get
             {
                 return _delete
-                    ?? (_delete = new RelayCommand(DeleteMethod));
+                    ?? (_delete = new RelayCommand(DeleteMethodAsync));
             }
         }
-        private void DeleteMethod()
+        private async void DeleteMethodAsync()
         {
             try
-            {
-                using (var unitOfWork = new UnitOfWork(new GeneralDBContext()))
+            {              
+                MessageDialogResult result = await currentWindow.ShowMessageAsync("تأكيد الحذف", "هل تـريــد حــذف هـذا الصنف؟", MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings()
                 {
-                    unitOfWork.Items.Remove(_selectedItem.Item);
-                    unitOfWork.Complete();
-                    Load();
+                    AffirmativeButtonText = "موافق",
+                    NegativeButtonText = "الغاء",
+                    DialogMessageFontSize = 25,
+                    DialogTitleFontSize = 30
+                });
+                if (result == MessageDialogResult.Affirmative)
+                {
+                    using (var unitOfWork = new UnitOfWork(new GeneralDBContext()))
+                    {
+                        unitOfWork.Items.Remove(_selectedItem.Item);
+                        unitOfWork.Complete();
+                        Load();
+                    }
                 }
+
             }
             catch (Exception ex)
             {
@@ -284,12 +295,14 @@ namespace Restaurant.ViewModels.ItemViewModels
                     }
                     else
                     {
+
                         unitOfWork.Items.Add(new Item
                         {
                             IsAvailable = true,
                             Name = _newItem.Name,
                             Price = _newItem.Price,
-                            CategoryID = _newItem.CategoryID
+                            CategoryID = _newItem.CategoryID,
+                            Order = unitOfWork.Items.Find(f => f.CategoryID == _newItem.CategoryID).Count()+1
                         });
                         unitOfWork.Complete();
                         NewItem = new ItemAddDataModel();
@@ -333,7 +346,7 @@ namespace Restaurant.ViewModels.ItemViewModels
                     Price = _selectedItem.Item.Price,
                     ID = _selectedItem.Item.ID,
                     Category = _selectedItem.Category,
-                    CategoryID=_selectedItem.Category.ID
+                    CategoryID = _selectedItem.Category.ID
                 };
 
                 await currentWindow.ShowMetroDialogAsync(itemUpdateDialog);
@@ -378,6 +391,8 @@ namespace Restaurant.ViewModels.ItemViewModels
                         SelectedItem.Item.Name = ItemUpdate.Name;
                         SelectedItem.Item.Price = ItemUpdate.Price;
                         SelectedItem.Item.IsAvailable = ItemUpdate.IsAvailable;
+                        SelectedItem.Item.CategoryID = ItemUpdate.CategoryID;
+                        SelectedItem.Item.Category = ItemUpdate.Category;
                         unitOfWork.Items.Edit(_selectedItem.Item);
                         unitOfWork.Complete();
                         await currentWindow.HideMetroDialogAsync(itemUpdateDialog);

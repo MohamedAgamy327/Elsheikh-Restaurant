@@ -31,6 +31,7 @@ namespace Restaurant.ViewModels
     public class MainViewModel : ValidatableBindableBase
     {
         MetroWindow currentWindow;
+        public static bool IsSignOut { get; set; }
 
         private readonly BackupDialog backupDialog;
         private readonly RestoreBackupDialog restoreBackupDialog;
@@ -141,6 +142,12 @@ namespace Restaurant.ViewModels
                         currentWindow.Hide();
                         new BillItemsWindow().ShowDialog();
                         currentWindow.Show();
+                        if(IsSignOut)
+                        {
+                            LoginModel = new LoginDataModel();
+                            loginDialog.DataContext = this;
+                            await currentWindow.ShowMetroDialogAsync(loginDialog);
+                        }
                         break;
 
                     case "Bill":
@@ -228,15 +235,16 @@ namespace Restaurant.ViewModels
                         if (UserData.Role == RoleText.Admin)
                         {
                             Mouse.OverrideCursor = null;
+                            IsSignOut = false;
                             await currentWindow.HideMetroDialogAsync(loginDialog);
                         }
-
                         else
                         {
                             if (unitOfWork.Shifts.SingleOrDefault(s => s.UserID == user.ID && s.EndDate == null) != null)
                             {
                                 Mouse.OverrideCursor = null;
                                 await currentWindow.HideMetroDialogAsync(loginDialog);
+                                IsSignOut = false;
                                 NavigateToViewMethodAsync("Cashier");
                             }
                             else if (unitOfWork.Shifts.SingleOrDefault(s => s.UserID != user.ID && s.EndDate == null) != null)

@@ -194,19 +194,29 @@ namespace Restaurant.ViewModels.SafeViewModels
             get
             {
                 return _delete
-                    ?? (_delete = new RelayCommand(DeleteMethod));
+                    ?? (_delete = new RelayCommand(DeleteMethodAsync));
             }
         }
-        private void DeleteMethod()
+        private async void DeleteMethodAsync()
         {
             try
             {
-                using (var unitOfWork = new UnitOfWork(new GeneralDBContext()))
+                MessageDialogResult result = await currentWindow.ShowMessageAsync("تأكيد الحذف", "هل تـريــد حــذف هـذا السند؟", MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings()
                 {
-                    unitOfWork.Safes.Remove(_selectedSafe.Safe);
-                    unitOfWork.Complete();
+                    AffirmativeButtonText = "موافق",
+                    NegativeButtonText = "الغاء",
+                    DialogMessageFontSize = 25,
+                    DialogTitleFontSize = 30
+                });
+                if (result == MessageDialogResult.Affirmative)
+                {
+                    using (var unitOfWork = new UnitOfWork(new GeneralDBContext()))
+                    {
+                        unitOfWork.Safes.Remove(_selectedSafe.Safe);
+                        unitOfWork.Complete();
+                    }
+                    Load();
                 }
-                Load();
             }
             catch (Exception ex)
             {

@@ -17,12 +17,15 @@ using System.Diagnostics;
 using MahApps.Metro.Controls.Dialogs;
 using Restaurant.Views.CashierViews.FinishShiftViews;
 using Restaurant.Views.CashierViews.ShiftSpendingViews;
+using System.Collections.Generic;
+using Restaurant.ViewModels.ShiftViewModels;
+using Restaurant.Views.ShiftViews;
 
 namespace Restaurant.ViewModels.CashierViewModels
 {
     public class BillItemsViewModel : ValidatableBindableBase
     {
-        MetroWindow currentWindow;
+        readonly MetroWindow currentWindow;
         private readonly FinishShiftDialog finishShiftDialog;
 
         public BillItemsViewModel()
@@ -128,7 +131,7 @@ namespace Restaurant.ViewModels.CashierViewModels
             {
                 using (var unitOfWork = new UnitOfWork(new GeneralDBContext()))
                 {
-                    Items = new ObservableCollection<Item>(unitOfWork.Items.Find(f => f.IsAvailable == true && f.CategoryID == id).OrderBy(o => o.Order).ThenBy(o => o.BillsItems.Count).ThenBy(o => o.Name));
+                    Items = new ObservableCollection<Item>(unitOfWork.Items.Find(f => f.IsAvailable == true && f.CategoryID == id).OrderBy(o => o.Order));
                 }
             }
             catch (Exception ex)
@@ -264,30 +267,37 @@ namespace Restaurant.ViewModels.CashierViewModels
 
                     Mouse.OverrideCursor = Cursors.Wait;
                     int rnd = new Random().Next(1000, 9999);
-                    DS ds = new DS();
-                    ds.Bill.Rows.Clear();
-                    int i = 0;
 
-                    foreach (var item in BillItems)
+                    List<int?> categoriesId = _billItems.Select(s => s.Item.CategoryID).Distinct().ToList();
+
+                    foreach (var categoryId in categoriesId)
                     {
-                        ds.Bill.Rows.Add();
-                        ds.Bill[i]["BillID"] = $"#{rnd}#{_newBill.ID}#";
-                        ds.Bill[i]["Date"] = DateTime.Now.ToShortDateString();
-                        ds.Bill[i]["Time"] = DateTime.Now.ToString(" h:mm tt");
-                        ds.Bill[i]["Type"] = _newBill.Type;
-                        ds.Bill[i]["Details"] = _newBill.Details;
-                        ds.Bill[i]["ItemQty"] = item.Qty;
-                        ds.Bill[i]["ItemName"] = item.Item.Name;
-                        ds.Bill[i]["ItemPrice"] = string.Format("{0:0.00}", item.Item.Price); ;
-                        ds.Bill[i]["BillTotal"] = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(_newBill.Total), 0));
-                        i++;
+                        DS ds = new DS();
+                        ds.Bill.Rows.Clear();
+                        int i = 0;
+                        foreach (var item in BillItems.Where(w => w.Item.CategoryID == categoryId))
+                        {
+                            ds.Bill.Rows.Add();
+                            ds.Bill[i]["BillID"] = $"#{rnd}#{_newBill.ID}#";
+                            ds.Bill[i]["Date"] = DateTime.Now.ToShortDateString();
+                            ds.Bill[i]["Time"] = DateTime.Now.ToString(" h:mm tt");
+                            ds.Bill[i]["Type"] = _newBill.Type;
+                            ds.Bill[i]["Details"] = _newBill.Details;
+                            ds.Bill[i]["ItemQty"] = item.Qty;
+                            ds.Bill[i]["ItemName"] = item.Item.Name;
+                            ds.Bill[i]["ItemPrice"] = string.Format("{0:0.00}", item.Item.Price); ;
+                            ds.Bill[i]["BillTotal"] = string.Format("{0:0.00}", Math.Round(Convert.ToDecimal(BillItems.Where(w => w.Item.CategoryID == categoryId).Sum(s => s.Total)), 0));
+                            i++;
+                        }
+                        //ReportWindow rpt = new ReportWindow();
+                        BillItemsReport billItemsReport = new BillItemsReport();
+                        billItemsReport.SetDataSource(ds.Tables["Bill"]);
+                        Mouse.OverrideCursor = null;
+                        billItemsReport.PrintToPrinter(1, false, 0, 15);
+                        //rpt.crv.ViewerCore.ReportSource = billItemsReport;
+                        //rpt.ShowDialog();
+
                     }
-
-                    BillItemsReport billItemsReport = new BillItemsReport();
-                    billItemsReport.SetDataSource(ds.Tables["Bill"]);
-                    Mouse.OverrideCursor = null;
-                    billItemsReport.PrintToPrinter(1, false, 0, 15);
-
                     BillItems = new ObservableCollection<BillItemDisplayDataModel>();
                     NewBill = new Bill
                     {
@@ -326,6 +336,33 @@ namespace Restaurant.ViewModels.CashierViewModels
             try
             {
                 Process.Start("calc.exe");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private RelayCommand _showBillsCategories;
+        public RelayCommand ShowBillsCategories
+        {
+            get
+            {
+                return _showBillsCategories
+                    ?? (_showBillsCategories = new RelayCommand(ShowBillsCategoriesMethod));
+            }
+        }
+        private void ShowBillsCategoriesMethod()
+        {
+            try
+            {
+                using (var unitOfWork = new UnitOfWork(new GeneralDBContext()))
+                {
+                    currentWindow.Hide();
+                    BillsCategoriesViewModel.ShiftID = unitOfWork.Shifts.FirstOrDefault(d => d.EndDate == null).ID;
+                    new BillsCategoriesWindow().ShowDialog();
+                    currentWindow.ShowDialog();
+                }
             }
             catch (Exception ex)
             {
@@ -475,10 +512,32 @@ namespace Restaurant.ViewModels.CashierViewModels
         {
             try
             {
-                if (UserData.Role == RoleText.Cashier)
+                if (UserData.Role == RoleText.Cashier && MainViewModel.IsSignOut == false)
                 {
                     new MainViewModel().ExecuteShutdown();
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private RelayCommand _signOut;
+        public RelayCommand SignOut
+        {
+            get
+            {
+                return _signOut ?? (_signOut = new RelayCommand(
+                    ExecuteSignOut));
+            }
+        }
+        private void ExecuteSignOut()
+        {
+            try
+            {
+                MainViewModel.IsSignOut = true;
+                currentWindow.Close();
             }
             catch (Exception ex)
             {

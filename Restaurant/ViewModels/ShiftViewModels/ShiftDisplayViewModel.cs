@@ -16,7 +16,7 @@ namespace Restaurant.ViewModels.ShiftViewModels
 {
     public class ShiftDisplayViewModel : ValidatableBindableBase
     {
-        private MetroWindow currentWindow;
+        private readonly MetroWindow currentWindow;
         private readonly ShiftShowDialog shiftShowDialog;
 
         private void Load()
@@ -183,16 +183,16 @@ namespace Restaurant.ViewModels.ShiftViewModels
             }
         }
 
-        private RelayCommand _show;
-        public RelayCommand Show
+        private RelayCommand _showMoney;
+        public RelayCommand ShowMoney
         {
             get
             {
-                return _show
-                    ?? (_show = new RelayCommand(ShowMethod));
+                return _showMoney
+                    ?? (_showMoney = new RelayCommand(ShowMoneyMethod));
             }
         }
-        private async void ShowMethod()
+        private async void ShowMoneyMethod()
         {
             try
             {
@@ -212,6 +212,31 @@ namespace Restaurant.ViewModels.ShiftViewModels
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private RelayCommand _showBillsCategories;
+        public RelayCommand ShowBillsCategories
+        {
+            get
+            {
+                return _showBillsCategories
+                    ?? (_showBillsCategories = new RelayCommand(ShowBillsCategoriesMethod));
+            }
+        }
+        private void ShowBillsCategoriesMethod()
+        {
+            try
+            {
+                currentWindow.Hide();
+                BillsCategoriesViewModel.ShiftID = _selectedShift.Shift.ID;
+                new BillsCategoriesWindow().ShowDialog();
+                currentWindow.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
 
         private RelayCommand<string> _closeDialog;
         public RelayCommand<string> CloseDialog

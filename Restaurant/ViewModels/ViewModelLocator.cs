@@ -36,6 +36,7 @@ namespace Restaurant.ViewModels
             SimpleIoc.Default.Register<BillDisplayViewModel>();
             SimpleIoc.Default.Register<BillShowViewModel>();
             SimpleIoc.Default.Register<CategoryDisplayViewModel>();
+            SimpleIoc.Default.Register<BillsCategoriesViewModel>();
         }
 
         public MainViewModel Main
@@ -198,6 +199,14 @@ namespace Restaurant.ViewModels
             }
         }
 
+        public BillsCategoriesViewModel BillsCategories
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<BillsCategoriesViewModel>();
+            }
+        }
+
         public static void Cleanup(string viewModel)
         {
             switch (viewModel)
@@ -299,6 +308,11 @@ namespace Restaurant.ViewModels
                 case "ItemOrder":
                     SimpleIoc.Default.Unregister<ItemOrderViewModel>();
                     SimpleIoc.Default.Register<ItemOrderViewModel>();
+                    break;
+
+                case "BillsCategories":
+                    SimpleIoc.Default.Unregister<BillsCategoriesViewModel>();
+                    SimpleIoc.Default.Register<BillsCategoriesViewModel>();
                     break;
 
                 default:

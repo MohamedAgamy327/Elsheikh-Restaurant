@@ -28,15 +28,15 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height=".7*" />
-            <RowDefinition Height="9*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="8*" />
             <RowDefinition Height=".5*" />
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal">
-            <TextBlock Margin="10,0" Style="{StaticResource TextBlockWindowStyle}"
+            <TextBlock Margin="10" Style="{StaticResource TextBlockWindowStyle}"
                         >النوع</TextBlock>
-            <ComboBox Margin="10,0" Width="200" Helpers:FocusExtension.IsFocused="{Binding IsFocused}"
+            <ComboBox Margin="10" Width="200" Helpers:FocusExtension.IsFocused="{Binding IsFocused}"
                       Name="First"
                       ItemsSource="{Binding Categories}"
                       SelectedValuePath="ID"
@@ -68,28 +68,48 @@
                 <DataGridTextColumn IsReadOnly="True"
                                     Header="الصنف"
                                     Width="2*"
-                                    HeaderStyle="{StaticResource ColumnHeaderStyle2}"
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle3}"
                                     Binding="{Binding Item.Name}" />
                 <DataGridTextColumn IsReadOnly="True"
-                                    Header="النوع"
-                                    Width="2*"
-                                    HeaderStyle="{StaticResource ColumnHeaderStyle2}"
-                                    Binding="{Binding Category.Name}" />
-                <DataGridTextColumn IsReadOnly="True"
                                     Header="السعر"
-                                    Width="1*"
-                                    HeaderStyle="{StaticResource ColumnHeaderStyle2}"
+                                    Width="0.5*"
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle3}"
                                     Binding="{Binding Item.Price}" />
                 <DataGridTextColumn IsReadOnly="True"
                                     Header="الترتيب"
-                                    Width="1*"
-                                    HeaderStyle="{StaticResource ColumnHeaderStyle2}"
+                                    Width="0.5*"
+                                    HeaderStyle="{StaticResource ColumnHeaderStyle3}"
                                     Binding="{Binding Item.Order}" />
+                <DataGridTemplateColumn  Header="الاول"
+                                         Width="0.5*"
+                                         HeaderStyle="{StaticResource ColumnHeaderStyle3}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button  Command="{Binding DataContext.MoveFirst, 
+                        RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                     BorderThickness="0">
+                                <iconPacks:PackIconFontAwesome Kind="AngleDoubleUp" />
+                                <Button.Style>
+                                    <Style TargetType="Button"
+                                           BasedOn="{StaticResource MetroCircleButtonStyle}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Item.Order}"
+                                                         Value="1">
+                                                <Setter Property="IsEnabled"
+                                                        Value="False"></Setter>
+                                            </DataTrigger>
 
-            
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+               
                 <DataGridTemplateColumn  Header="اعلى"
                                          Width="0.5*"
-                                         HeaderStyle="{StaticResource ColumnHeaderStyle2}">
+                                         HeaderStyle="{StaticResource ColumnHeaderStyle3}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button  Command="{Binding DataContext.MoveUp, 
@@ -116,7 +136,7 @@
                 
                 <DataGridTemplateColumn  Header="اسفل"
                                          Width="0.5*"
-                                         HeaderStyle="{StaticResource ColumnHeaderStyle2}">
+                                         HeaderStyle="{StaticResource ColumnHeaderStyle3}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button  Command="{Binding DataContext.MoveDown, 
@@ -140,8 +160,34 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                
-                
+
+                <DataGridTemplateColumn  Header="الاخير"
+                                         Width="0.5*"
+                                         HeaderStyle="{StaticResource ColumnHeaderStyle3}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button  Command="{Binding DataContext.MoveLast, 
+                        RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                     BorderThickness="0">
+                                <iconPacks:PackIconFontAwesome Kind="AngleDoubleDown" />
+                                <Button.Style>
+                                    <Style TargetType="Button"
+                                           BasedOn="{StaticResource MetroCircleButtonStyle}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsLast}"
+                                                         Value="True">
+                                                <Setter Property="IsEnabled"
+                                                        Value="False"></Setter>
+                                            </DataTrigger>
+
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
 
             <DataGrid.Style>

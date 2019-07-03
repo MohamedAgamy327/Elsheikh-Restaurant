@@ -102,12 +102,27 @@
                 <DataGridTextColumn IsReadOnly="True"  Header="نهاية الشفت" Width="1.5*" HeaderStyle="{StaticResource ColumnHeaderStyle1}"
                                     Binding="{Binding Shift.EndDate, StringFormat={}\{0:hh:mm tt yyyy/MM/dd  \}}"  />
 
-                <DataGridTemplateColumn  Header="عرض" Width="0.75*" HeaderStyle="{StaticResource ColumnHeaderStyle1}" >
+                <DataGridTemplateColumn  Header="الفلوس" Width="0.75*" HeaderStyle="{StaticResource ColumnHeaderStyle1}" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button  Command="{Binding DataContext.Show, 
+                            <Button  Command="{Binding DataContext.ShowMoney, 
                         RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"   BorderThickness="0"  Style="{ StaticResource MetroCircleButtonStyle}" >
-                                <iconPacks:PackIconMaterial Kind="Eye" />
+                                <iconPacks:PackIconModern Kind="Money" />
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn  Header="التجمعيات"
+                                         Width="0.75*"
+                                         HeaderStyle="{StaticResource ColumnHeaderStyle1}">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button  Command="{Binding DataContext.ShowBillsCategories, 
+                        RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                     BorderThickness="0"
+                                     Style="{ StaticResource MetroCircleButtonStyle}">
+                                <iconPacks:PackIconOcticons Kind="ListUnordered" />
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

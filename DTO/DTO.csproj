@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BillDataModel\BillDisplayDataModel.cs" />
+    <Compile Include="BillItemDataModel\BillsCategoriesDataModel.cs" />
     <Compile Include="CategoryDataModel\CategoryAddDataModel.cs" />
     <Compile Include="CategoryDataModel\CategoryDisplayDataModel.cs" />
     <Compile Include="CategoryDataModel\CategoryUpdateDataModel.cs" />

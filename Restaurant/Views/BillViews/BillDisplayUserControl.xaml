@@ -40,7 +40,7 @@
             <Style   TargetType="DatePicker"  >
                 <Setter Property="FontFamily" Value="calibri"/>
                 <Setter Property="FontWeight" Value="Bold"/>
-                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontSize" Value="14"/>
                 <Setter Property="Height" Value="30"/>
             </Style>
 
@@ -151,6 +151,25 @@
                                          BorderThickness="0"
                                          Style="{ StaticResource MetroCircleButtonStyle}">
                                     <iconPacks:PackIconMaterial Kind="Eye" />
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn  Header="حذف"
+                                             Width="0.75*"
+                                             HeaderStyle="{StaticResource ColumnHeaderStyle1}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button  Command="{Binding DataContext.Delete, 
+                        RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"
+                                         BorderThickness="0">
+                                    <iconPacks:PackIconMaterial Kind="DeleteForever" />
+                                    <Button.Style>
+                                        <Style TargetType="Button"
+                                               BasedOn="{StaticResource MetroCircleButtonStyle}">
+                                        </Style>
+                                    </Button.Style>
                                 </Button>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

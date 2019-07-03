@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Work\Project\Freelance\Sheikh Restaurant\Restaurant\obj\Debug\
+D:\Projects\Me\Sheikh Restaurant\Restaurant\obj\Debug\
 Restaurant
 none
 false
 CODE_ANALYSIS;DEBUG;TRACE
-D:\Work\Project\Freelance\Sheikh Restaurant\Restaurant\App.xaml
-391402857419
+D:\Projects\Me\Sheikh Restaurant\Restaurant\App.xaml
+411999098010
 
-78-2042785936
-94-37464658
-Reports\ReportWindow.xaml;SplashScreen\SplashScreenWindow.xaml;Views\BillViews\BillDisplayUserControl.xaml;Views\BillViews\BillShowWindow.xaml;Views\BillViews\BillWindow.xaml;Views\CashierViews\FinishShiftViews\FinishShiftDialog.xaml;Views\CashierViews\BillItemsViews\BillItemsWindow.xaml;Views\CashierViews\ShiftSpendingViews\ShiftSpendingAddDialog.xaml;Views\CashierViews\ShiftSpendingViews\ShiftSpendingUpdateDialog.xaml;Views\CashierViews\ShiftSpendingViews\ShiftSpendingWindow.xaml;Views\ItemViews\CategoryAddDialog.xaml;Views\ItemViews\CategoryDisplayUserControl.xaml;Views\ItemViews\CategoryUpdateDialog.xaml;Views\ItemViews\ItemOrderUserControl.xaml;Views\MainViews\BackupDialog.xaml;Views\MainViews\LoginDialog.xaml;Views\MainViews\MainWindow.xaml;Skins\MainSkin.xaml;Views\MainViews\RestoreBackupDialog.xaml;Views\MainViews\StartShiftDialog.xaml;Views\SafeViews\SafeAddDialog.xaml;Views\SafeViews\SafeDisplayUserControl.xaml;Views\SafeViews\SafeReportUserControl.xaml;Views\SafeViews\SafeWindow.xaml;Views\ShiftViews\ShiftDisplayUserControl.xaml;Views\ShiftViews\ShiftShowDialog.xaml;Views\ShiftViews\ShiftWindow.xaml;Views\SpendingViews\SpendingAddDialog.xaml;Views\SpendingViews\SpendingDisplayUserControl.xaml;Views\SpendingViews\SpendingReportUserControl.xaml;Views\SpendingViews\SpendingWindow.xaml;Views\ItemViews\ItemAddDialog.xaml;Views\ItemViews\ItemUpdateDialog.xaml;Views\ItemViews\ItemDisplayUserControl.xaml;Views\ItemViews\ItemWindow.xaml;Views\UserViews\UserAddDialog.xaml;Views\UserViews\UserDisplayUserControl.xaml;Views\UserViews\UserUpdateDialog.xaml;Views\UserViews\UserWindow.xaml;
+811724652255
+931109545594
+Reports\ReportWindow.xaml;SplashScreen\SplashScreenWindow.xaml;Views\BillViews\BillDisplayUserControl.xaml;Views\BillViews\BillsCategoriesUserControl.xaml;Views\BillViews\BillShowWindow.xaml;Views\BillViews\BillWindow.xaml;Views\CashierViews\FinishShiftViews\FinishShiftDialog.xaml;Views\CashierViews\BillItemsViews\BillItemsWindow.xaml;Views\CashierViews\ShiftSpendingViews\ShiftSpendingAddDialog.xaml;Views\CashierViews\ShiftSpendingViews\ShiftSpendingUpdateDialog.xaml;Views\CashierViews\ShiftSpendingViews\ShiftSpendingWindow.xaml;Views\ItemViews\CategoryAddDialog.xaml;Views\ItemViews\CategoryDisplayUserControl.xaml;Views\ItemViews\CategoryUpdateDialog.xaml;Views\ItemViews\ItemOrderUserControl.xaml;Views\MainViews\BackupDialog.xaml;Views\MainViews\LoginDialog.xaml;Views\MainViews\MainWindow.xaml;Skins\MainSkin.xaml;Views\MainViews\RestoreBackupDialog.xaml;Views\MainViews\StartShiftDialog.xaml;Views\SafeViews\SafeAddDialog.xaml;Views\SafeViews\SafeDisplayUserControl.xaml;Views\SafeViews\SafeReportUserControl.xaml;Views\SafeViews\SafeWindow.xaml;Views\ShiftViews\BillsCategoriesWindow.xaml;Views\ShiftViews\ShiftDisplayUserControl.xaml;Views\ShiftViews\ShiftShowDialog.xaml;Views\ShiftViews\ShiftWindow.xaml;Views\SpendingViews\SpendingAddDialog.xaml;Views\SpendingViews\SpendingDisplayUserControl.xaml;Views\SpendingViews\SpendingReportUserControl.xaml;Views\SpendingViews\SpendingWindow.xaml;Views\ItemViews\ItemAddDialog.xaml;Views\ItemViews\ItemUpdateDialog.xaml;Views\ItemViews\ItemDisplayUserControl.xaml;Views\ItemViews\ItemWindow.xaml;Views\UserViews\UserAddDialog.xaml;Views\UserViews\UserDisplayUserControl.xaml;Views\UserViews\UserUpdateDialog.xaml;Views\UserViews\UserWindow.xaml;
 
 False
 

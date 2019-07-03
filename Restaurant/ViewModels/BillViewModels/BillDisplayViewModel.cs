@@ -10,6 +10,7 @@ using System.Windows;
 using System.Linq;
 using MahApps.Metro.Controls;
 using Restaurant.Views.BillViews;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace Restaurant.ViewModels.BillViewModels
 {
@@ -197,5 +198,44 @@ namespace Restaurant.ViewModels.BillViewModels
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private RelayCommand _delete;
+        public RelayCommand Delete
+        {
+            get
+            {
+                return _delete
+                    ?? (_delete = new RelayCommand(DeleteMethodAsync));
+            }
+        }
+        private async void DeleteMethodAsync()
+        {
+            try
+            {
+                MessageDialogResult result = await currentWindow.ShowMessageAsync("تأكيد الحذف", "هل تـريــد حــذف هـذه الفاتورة؟", MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings()
+                {
+                    AffirmativeButtonText = "موافق",
+                    NegativeButtonText = "الغاء",
+                    DialogMessageFontSize = 25,
+                    DialogTitleFontSize = 30
+                });
+                if (result == MessageDialogResult.Affirmative)
+                {
+                    using (var unitOfWork = new UnitOfWork(new GeneralDBContext()))
+                    {
+                        unitOfWork.Bills.Remove(_selectedBill.Bill);
+                        unitOfWork.Safes.Remove(s => s.RegistrationDate == _selectedBill.Bill.RegistrationDate);
+                        unitOfWork.Complete();
+                    }
+                    Load();
+                }
+               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
     }
 }

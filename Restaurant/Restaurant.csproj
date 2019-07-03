@@ -165,6 +165,7 @@
       <DependentUpon>SplashScreenWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BillViewModels\BillDisplayViewModel.cs" />
+    <Compile Include="ViewModels\ShiftViewModels\BillsCategoriesViewModel.cs" />
     <Compile Include="ViewModels\BillViewModels\BillShowViewModel.cs" />
     <Compile Include="ViewModels\BillViewModels\BillViewModel.cs" />
     <Compile Include="ViewModels\CashierViewModels\BillItemsViewModel.cs" />
@@ -187,6 +188,9 @@
     <Compile Include="ViewModels\ViewModelLocator.cs" />
     <Compile Include="Views\BillViews\BillDisplayUserControl.xaml.cs">
       <DependentUpon>BillDisplayUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillViews\BillsCategoriesUserControl.xaml.cs">
+      <DependentUpon>BillsCategoriesUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BillViews\BillShowWindow.xaml.cs">
       <DependentUpon>BillShowWindow.xaml</DependentUpon>
@@ -245,6 +249,9 @@
     <Compile Include="Views\SafeViews\SafeWindow.xaml.cs">
       <DependentUpon>SafeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ShiftViews\BillsCategoriesWindow.xaml.cs">
+      <DependentUpon>BillsCategoriesWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ShiftViews\ShiftDisplayUserControl.xaml.cs">
       <DependentUpon>ShiftDisplayUserControl.xaml</DependentUpon>
     </Compile>
@@ -299,6 +306,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BillViews\BillDisplayUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BillViews\BillsCategoriesUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -394,6 +405,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ShiftViews\BillsCategoriesWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ShiftViews\ShiftDisplayUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -478,6 +493,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ItemsOnlyReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ItemsOnlyReport1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\BillReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -637,6 +653,10 @@
     <Resource Include="SalesICO.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

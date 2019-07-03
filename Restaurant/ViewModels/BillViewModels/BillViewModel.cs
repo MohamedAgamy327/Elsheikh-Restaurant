@@ -44,6 +44,9 @@ namespace Restaurant.ViewModels.BillViewModels
                         case "BillDisplay":
                             CurrentViewModel = new BillDisplayViewModel();
                             break;
+                        //case "Categories":
+                        //    CurrentViewModel = new BillsCategoriesViewModel();
+                        //    break;
                         default:
                             break;
                     }

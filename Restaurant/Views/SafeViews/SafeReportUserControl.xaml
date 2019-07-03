@@ -39,7 +39,7 @@
         <Grid Margin="0,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
             <TextBox Margin="5,0" Grid.Column="0" Text="{Binding Key,UpdateSourceTrigger=PropertyChanged}"   
@@ -65,7 +65,7 @@
             <StackPanel Orientation="Horizontal" Grid.Column="1">
                 <TextBlock Margin="5,0" Style="{StaticResource TextBlockAddUpdateStyle}"> من</TextBlock>
 
-                <Controls:DateTimePicker Width="120" Style="{StaticResource DatePickerStyle}" SelectedDate="{Binding DateFrom,UpdateSourceTrigger=PropertyChanged}" Margin="5,0" >
+                <Controls:DateTimePicker Width="185" Style="{StaticResource DatePickerStyle}" SelectedDate="{Binding DateFrom,UpdateSourceTrigger=PropertyChanged}" Margin="5,0" >
 
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectedDateChanged">
@@ -75,7 +75,7 @@
                 </Controls:DateTimePicker>
 
                 <TextBlock Style="{StaticResource TextBlockStyle}" VerticalAlignment="Center" Margin="5,0">إلى</TextBlock>
-                <Controls:DateTimePicker Width="120"
+                <Controls:DateTimePicker Width="185"
                                          Style="{StaticResource DatePickerStyle}"  SelectedDate="{Binding DateTo,UpdateSourceTrigger=PropertyChanged}"    Margin="5,0">
 
                     <i:Interaction.Triggers>

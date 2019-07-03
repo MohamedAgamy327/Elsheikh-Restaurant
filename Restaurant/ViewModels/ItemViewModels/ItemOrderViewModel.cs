@@ -8,29 +8,30 @@ using MahApps.Metro.Controls;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using Utilities.Paging;
 
 namespace Restaurant.ViewModels.ItemViewModels
 {
     public class ItemOrderViewModel : ValidatableBindableBase
     {
-        readonly MetroWindow currentWindow;
-
         private void Load()
         {
             using (var unitOfWork = new UnitOfWork(new GeneralDBContext()))
             {
                 Paging.TotalRecords = unitOfWork.Items.GetRecordsNumber(_selectedCategory.ID);
                 Items = new ObservableCollection<ItemOrderDataModel>(unitOfWork.Items.Search(_selectedCategory.ID));
-                //int i = 1;
-                //foreach (var item in Items)
-                //{
-                //    item.Item.Order = i;
-                //    unitOfWork.Items.Edit(item.Item);
-                //    i++;
-                //}
-                //unitOfWork.Complete();
+                int i = 1;
+                foreach (var item in Items)
+                {
+                    item.Item.Order = i;
+                    unitOfWork.Items.Edit(item.Item);
+                    i++;
+                }
+                unitOfWork.Complete();
             }
         }
 
@@ -39,7 +40,6 @@ namespace Restaurant.ViewModels.ItemViewModels
             _key = "";
             _isFocused = true;
             _paging = new PagingWPF();
-            currentWindow = Application.Current.Windows.OfType<MetroWindow>().LastOrDefault();
         }
 
         private bool _isFocused;
@@ -154,9 +154,10 @@ namespace Restaurant.ViewModels.ItemViewModels
         {
             try
             {
+                Mouse.OverrideCursor = Cursors.Wait;
                 using (var unitOfWork = new UnitOfWork(new GeneralDBContext()))
                 {
-                    Item previousItem = unitOfWork.Items.FirstOrDefault(f => f.Order == _selectedItem.Item.Order-1 && f.CategoryID==_selectedCategory.ID);
+                    Item previousItem = unitOfWork.Items.FirstOrDefault(f => f.Order == _selectedItem.Item.Order - 1 && f.CategoryID == _selectedCategory.ID);
                     previousItem.Order += 1;
                     unitOfWork.Items.Edit(previousItem);
                     _selectedItem.Item.Order -= 1;
@@ -168,6 +169,10 @@ namespace Restaurant.ViewModels.ItemViewModels
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                Mouse.OverrideCursor = null;
             }
         }
 
@@ -190,6 +195,76 @@ namespace Restaurant.ViewModels.ItemViewModels
                     nextItem.Order -= 1;
                     unitOfWork.Items.Edit(nextItem);
                     _selectedItem.Item.Order += 1;
+                    unitOfWork.Items.Edit(_selectedItem.Item);
+                    unitOfWork.Complete();
+                    Load();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private RelayCommand _moveFirst;
+        public RelayCommand MoveFirst
+        {
+            get
+            {
+                return _moveFirst
+                    ?? (_moveFirst = new RelayCommand(MoveFirstMethod));
+            }
+        }
+        private void MoveFirstMethod()
+        {
+            try
+            {
+                using (var unitOfWork = new UnitOfWork(new GeneralDBContext()))
+                {
+                    foreach (var item in _items)
+                    {
+                        if(_selectedItem != item && _selectedItem.Item.Order >item.Item.Order)
+                        {
+                            item.Item.Order += 1;
+                            unitOfWork.Items.Edit(item.Item);
+                        }
+                    }
+                    _selectedItem.Item.Order = 1;
+                    unitOfWork.Items.Edit(_selectedItem.Item);
+                    unitOfWork.Complete();
+                    Load();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private RelayCommand _moveLast;
+        public RelayCommand MoveLast
+        {
+            get
+            {
+                return _moveLast
+                    ?? (_moveLast = new RelayCommand(MoveLastMethod));
+            }
+        }
+        private void MoveLastMethod()
+        {
+            try
+            {
+                using (var unitOfWork = new UnitOfWork(new GeneralDBContext()))
+                {
+                    foreach (var item in _items)
+                    {
+                        if (_selectedItem != item && _selectedItem.Item.Order < item.Item.Order)
+                        {
+                            item.Item.Order -= 1;
+                            unitOfWork.Items.Edit(item.Item);
+                        }
+                    }
+                    _selectedItem.Item.Order = _items.Count;
                     unitOfWork.Items.Edit(_selectedItem.Item);
                     unitOfWork.Complete();
                     Load();

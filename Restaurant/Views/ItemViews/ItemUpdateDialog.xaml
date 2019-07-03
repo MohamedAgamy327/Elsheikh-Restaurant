@@ -23,7 +23,7 @@
 
         <TextBlock Style="{StaticResource TextBlockStyle}"
                    Margin="0,5">النوع</TextBlock>
-        <ComboBox IsEnabled="False"
+        <ComboBox 
                   ItemsSource="{Binding Categories}"
                   SelectedValuePath="ID"
                   SelectedItem="{Binding ItemUpdate.Category}"

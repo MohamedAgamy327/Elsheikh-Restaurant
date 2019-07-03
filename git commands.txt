@@ -1,10 +1,10 @@
 git init
 
-git config --global user.name "your name"
+git config --global user.name "mohamed Agamy"
 
-git config --global user.email "email@example.com"
+git config --global user.email "mohamedagamy327@gmail.com"
 
-git remote add origin https://github.com/cyandigitalhouse20/VONNN-Angular.git
+git remote add origin https://github.com/mohamedagamyahmed/ElsheikhRestaurant.git
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 git add .
 
