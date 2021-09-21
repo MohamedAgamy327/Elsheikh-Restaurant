@@ -290,10 +290,15 @@ namespace Restaurant.ViewModels.CashierViewModels
                             i++;
                         }
                         //ReportWindow rpt = new ReportWindow();
-                        BillItemsReport billItemsReport = new BillItemsReport();
-                        billItemsReport.SetDataSource(ds.Tables["Bill"]);
-                        Mouse.OverrideCursor = null;
-                        billItemsReport.PrintToPrinter(1, false, 0, 15);
+                        using (BillItemsReport billItemsReport = new BillItemsReport())
+                        {
+                            billItemsReport.SetDataSource(ds.Tables["Bill"]);
+                            Mouse.OverrideCursor = null;
+                            billItemsReport.PrintToPrinter(1, false, 0, 15);
+                            billItemsReport.Close();
+                            billItemsReport.Dispose();
+                        }
+
                         //rpt.crv.ViewerCore.ReportSource = billItemsReport;
                         //rpt.ShowDialog();
 

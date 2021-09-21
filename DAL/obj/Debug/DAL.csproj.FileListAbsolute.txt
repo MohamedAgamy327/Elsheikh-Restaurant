@@ -221,4 +221,6 @@ D:\Projects\Me\Sheikh Restaurant\DAL\obj\Debug\DAL.Migrations.upadeincome.resour
 D:\Projects\Me\Sheikh Restaurant\DAL\obj\Debug\DAL.csproj.GenerateResource.cache
 D:\Projects\Me\Sheikh Restaurant\DAL\obj\Debug\DAL.dll
 D:\Projects\Me\Sheikh Restaurant\DAL\obj\Debug\DAL.pdb
-D:\Projects\Me\Sheikh Restaurant\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\Projects\Me\Sheikh Restaurant\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+D:\Projects\Me\Sheikh Restaurant\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\Projects\Me\Sheikh Restaurant\DAL\obj\Debug\DAL.csproj.CopyComplete

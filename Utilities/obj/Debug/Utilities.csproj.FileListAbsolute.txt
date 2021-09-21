@@ -135,4 +135,7 @@ D:\Projects\Me\Sheikh Restaurant\Utilities\bin\Debug\GalaSoft.MvvmLight.Platform
 D:\Projects\Me\Sheikh Restaurant\Utilities\bin\Debug\EntityFramework.xml
 D:\Projects\Me\Sheikh Restaurant\Utilities\obj\Debug\Utilities.dll
 D:\Projects\Me\Sheikh Restaurant\Utilities\obj\Debug\Utilities.pdb
-D:\Projects\Me\Sheikh Restaurant\Utilities\obj\Debug\Utilities.csprojResolveAssemblyReference.cache
+D:\Projects\Me\Sheikh Restaurant\Utilities\bin\Debug\DAL.dll.config
+D:\Projects\Me\Sheikh Restaurant\Utilities\obj\Debug\Utilities.csprojAssemblyReference.cache
+D:\Projects\Me\Sheikh Restaurant\Utilities\obj\Debug\Utilities.csproj.CoreCompileInputs.cache
+D:\Projects\Me\Sheikh Restaurant\Utilities\obj\Debug\Utilities.csproj.CopyComplete
